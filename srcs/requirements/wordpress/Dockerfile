@@ -1,4 +1,4 @@
-FROM debian:trixie
+FROM debian:bookworm
 
 RUN apt -y update && apt -y upgrade
 RUN apt -y install wget php php-fpm php-mysql mariadb-client
@@ -13,3 +13,4 @@ RUN mv wp-cli.phar /usr/local/bin/wp
 COPY /tools/auto_config.sh .
 RUN chmod +x auto_config.sh
 ENTRYPOINT ["./auto_config.sh"]
+RUN /usr/sbin/php-fpm7.3 -F
